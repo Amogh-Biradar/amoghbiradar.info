@@ -5,6 +5,7 @@
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 .numbers div:last-child strong{font-size:clamp(2rem,3.6vw,4.2rem);align-self:center}
 .project-links .unavailable{margin:0;padding:18px 0;border-bottom:1px solid rgba(255,255,255,.5);font:650 14px/1.5 monospace;color:#e7ecff}
-.hero .portrait-frame{width:220px}
-@media(max-width:900px){.hero .portrait-frame{width:120px}}
-@media(max-width:620px){.hero .portrait-frame{width:100px}}
+.hero .portrait-block{max-width:420px}
+.hero .portrait-frame{width:300px}
+@media(max-width:900px){.hero .portrait-frame{width:150px}}
+@media(max-width:620px){.hero .portrait-frame{width:115px}}
