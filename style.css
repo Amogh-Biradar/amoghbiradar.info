@@ -9,3 +9,15 @@
 .hero .portrait-frame{width:300px}
 @media(max-width:900px){.hero .portrait-frame{width:150px}}
 @media(max-width:620px){.hero .portrait-frame{width:115px}}
+.nav-toggle{display:none}
+@media(max-width:620px){
+  .nav-shell{isolation:isolate}
+  .nav-toggle{display:inline-flex;align-items:center;justify-content:center;min-width:72px;min-height:44px;border:1px solid var(--ink);background:transparent;color:var(--ink);font:700 12px/1 monospace;text-transform:uppercase;letter-spacing:.06em;cursor:pointer}
+  .nav-toggle:hover,.nav-toggle[aria-expanded="true"]{background:var(--ink);color:var(--white)}
+  .nav-links{position:absolute;top:100%;left:0;right:0;display:grid;gap:0;padding:8px 20px 20px;background:var(--paper);border-bottom:1px solid var(--line);box-shadow:0 18px 32px rgba(17,19,24,.12);opacity:0;visibility:hidden;pointer-events:none;transform:translateY(-8px);transition:opacity .2s ease,transform .2s ease,visibility .2s}
+  .nav-toggle[aria-expanded="true"]+.nav-links{opacity:1;visibility:visible;pointer-events:auto;transform:translateY(0)}
+  .nav-shell .nav-links>a,.nav-shell .nav-links>a:not(.nav-cta):not(.active){display:flex;align-items:center;justify-content:space-between;min-height:48px;border-top:1px solid var(--line);font-size:14px}
+  .nav-shell .nav-links .active{padding-left:12px;color:var(--blue);box-shadow:inset 3px 0 0 var(--blue)}
+  .nav-shell .nav-links .nav-cta{margin-top:8px;padding:0 13px;border:1px solid var(--ink)}
+}
+@media(max-width:620px) and (prefers-reduced-motion:reduce){.nav-links{transition:none}}
