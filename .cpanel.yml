@@ -3,5 +3,5 @@ deployment:
   tasks:
     - export DEPLOYPATH=/home/amoghbiradar/public_html
     - /bin/mkdir -p "$DEPLOYPATH/assets"
-    - /bin/cp -f .htaccess index.html about.html projects.html project.html stem-champions.html style.css nav.js script.js robots.txt sitemap.xml "$DEPLOYPATH/"
+    - /bin/cp -f .htaccess index.html about.html projects.html project.html stem-champions.html style.css nav.js script.js robots.txt sitemap.xml favicon.svg "$DEPLOYPATH/"
     - /bin/cp -Rf assets/. "$DEPLOYPATH/assets/"
