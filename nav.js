@@ -22,3 +22,31 @@ if(navToggle){
     if(window.innerWidth>620)setMenuOpen(false);
   });
 }
+
+const main=document.querySelector('main');
+const firstSection=main?.querySelector(':scope > section:first-child');
+
+if(firstSection){
+  const backToTop=document.createElement('button');
+  const backToTopArrow=document.createElement('span');
+  const backToTopLabel=document.createElement('span');
+  backToTop.className='back-to-top';
+  backToTop.type='button';
+  backToTop.setAttribute('aria-label','Back to top');
+  backToTopArrow.setAttribute('aria-hidden','true');
+  backToTopArrow.textContent='↑';
+  backToTopLabel.textContent='Top';
+  backToTop.append(backToTopArrow,backToTopLabel);
+  document.body.append(backToTop);
+
+  const firstSectionObserver=new IntersectionObserver(([entry])=>{
+    backToTop.classList.toggle('is-visible',!entry.isIntersecting);
+  });
+  firstSectionObserver.observe(firstSection);
+
+  backToTop.addEventListener('click',()=>{
+    const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.scrollTo({top:0,behavior:reduceMotion?'auto':'smooth'});
+    document.querySelector('.wordmark')?.focus({preventScroll:true});
+  });
+}
