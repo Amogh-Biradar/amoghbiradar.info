@@ -36,6 +36,33 @@ function renderCase(){
     ?p.links.map(l=>`<a href="${l[1]}" target="_blank" rel="noreferrer">${esc(l[0])}<span>↗</span></a>`).join('')
     :'<p class="unavailable">Documentation temporarily unavailable.</p>';
   document.title=`${p.name} — Amogh Biradar`;
-  root.innerHTML=`<section class="case-hero"><a class="back-link" href="projects.html">← ALL PROJECTS</a><p>${esc(p.type)} · ${p.year}</p><h1>${esc(p.name)}</h1><p class="case-lead">${esc(p.lead)}</p><div class="mini-tags">${p.tags.map(t=>`<span>${esc(t)}</span>`).join('')}</div></section><section class="case-body"><aside><p>CASE STUDY</p><span>PROBLEM</span><span>SYSTEM</span><span>OUTCOME</span></aside><div><article><span>01 / PROBLEM</span><h2>What needed to change</h2><p>${esc(p.problem)}</p></article><article><span>02 / SYSTEM</span><h2>What I built</h2><p>${esc(p.build)}</p></article><article><span>03 / OUTCOME</span><h2>What it demonstrated</h2><p>${esc(p.outcome)}</p></article></div></section><section class="project-links"><div><p class="section-number">SOURCE / DEMO</p><h2>${p.links.length?'Inspect the work.':'Supporting material'}</h2></div><div>${sources}</div></section>`
+  root.innerHTML=`<section class="case-hero"><a class="back-link" href="projects.html">← ALL PROJECTS</a><p>${esc(p.type)} · ${p.year}</p><h1>${esc(p.name)}</h1><p class="case-lead">${esc(p.lead)}</p><div class="mini-tags">${p.tags.map(t=>`<span>${esc(t)}</span>`).join('')}</div></section><section class="case-body"><aside class="case-progress" aria-label="Case study sections"><p>CASE STUDY</p><a class="is-active" href="#problem" aria-current="location"><span>01</span><b>Problem</b></a><a href="#system"><span>02</span><b>System</b></a><a href="#outcome"><span>03</span><b>Outcome</b></a></aside><div><article id="problem"><span>01 / PROBLEM</span><h2>What needed to change</h2><p>${esc(p.problem)}</p></article><article id="system"><span>02 / SYSTEM</span><h2>What I built</h2><p>${esc(p.build)}</p></article><article id="outcome"><span>03 / OUTCOME</span><h2>What it demonstrated</h2><p>${esc(p.outcome)}</p></article></div></section><section class="project-links"><div><p class="section-number">SOURCE / DEMO</p><h2>${p.links.length?'Inspect the work.':'Supporting material'}</h2></div><div>${sources}</div></section>`;
+  setupCaseProgress();
+}
+function setupCaseProgress(){
+  const links=[...document.querySelectorAll('.case-progress a')];
+  const sections=links.map(link=>document.querySelector(link.hash)).filter(Boolean);
+  if(!links.length||sections.length!==links.length)return;
+  let queued=false;
+  const update=()=>{
+    const marker=window.innerHeight*.38;
+    let active=sections[0];
+    sections.forEach(section=>{if(section.getBoundingClientRect().top<=marker)active=section});
+    links.forEach(link=>{
+      const current=link.hash===`#${active.id}`;
+      link.classList.toggle('is-active',current);
+      if(current)link.setAttribute('aria-current','location');
+      else link.removeAttribute('aria-current');
+    });
+    queued=false;
+  };
+  const requestUpdate=()=>{
+    if(queued)return;
+    queued=true;
+    requestAnimationFrame(update);
+  };
+  addEventListener('scroll',requestUpdate,{passive:true});
+  addEventListener('resize',requestUpdate);
+  update();
 }
 renderGrid();setupFilters();renderCase();
