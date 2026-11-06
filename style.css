@@ -40,3 +40,17 @@
 .case-body article{scroll-margin-top:112px}
 @media(max-width:900px){.case-body .case-progress{display:none}}
 @media(prefers-reduced-motion:reduce){.case-progress a,.case-progress a:before{transition:none}.case-progress a:hover,.case-progress a.is-active{transform:none}}
+.case-pager{display:grid;grid-template-columns:repeat(2,1fr);border-bottom:1px solid var(--line)}
+.case-pager-link{min-height:230px;padding:48px clamp(20px,5vw,76px);display:flex;flex-direction:column;justify-content:center;transition:background-color .2s ease,color .2s ease}
+.case-pager-link+.case-pager-link{border-left:1px solid var(--line)}
+.case-pager-direction{display:flex;align-items:center;gap:10px;margin-bottom:22px;font:650 11px/1 monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--signal)}
+.case-pager-link strong{font-size:clamp(2rem,4vw,4.5rem);line-height:.95;letter-spacing:-.055em}
+.case-pager-link small{margin-top:14px;font:650 11px/1.5 monospace;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+.case-pager-next{text-align:right;align-items:flex-end}
+.case-pager-link:hover{background:var(--ink);color:var(--white)}
+.case-pager-link:hover small{color:#b9bbc2}
+.case-pager-link:hover .case-pager-direction>span{transform:translateX(-4px)}
+.case-pager-next:hover .case-pager-direction>span{transform:translateX(4px)}
+.case-pager-direction>span{transition:transform .2s ease}
+@media(max-width:620px){.case-pager{grid-template-columns:1fr}.case-pager-link{min-height:190px;padding:38px 20px}.case-pager-link+.case-pager-link{border-left:0;border-top:1px solid var(--line)}}
+@media(prefers-reduced-motion:reduce){.case-pager-link,.case-pager-direction>span{transition:none}.case-pager-link:hover .case-pager-direction>span{transform:none}}
