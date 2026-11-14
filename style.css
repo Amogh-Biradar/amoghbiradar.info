@@ -54,3 +54,10 @@
 .case-pager-direction>span{transition:transform .2s ease}
 @media(max-width:620px){.case-pager{grid-template-columns:1fr}.case-pager-link{min-height:190px;padding:38px 20px}.case-pager-link+.case-pager-link{border-left:0;border-top:1px solid var(--line)}}
 @media(prefers-reduced-motion:reduce){.case-pager-link,.case-pager-direction>span{transition:none}.case-pager-link:hover .case-pager-direction>span{transform:none}}
+@keyframes hero-enter{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.hero .hero-signal,.hero .hero-grid>div:first-child,.hero .portrait-block,.hero .telemetry{animation:hero-enter .62s cubic-bezier(.22,.8,.28,1) both}
+.hero .hero-signal{animation-delay:.04s}
+.hero .hero-grid>div:first-child{animation-delay:.12s}
+.hero .portrait-block{animation-delay:.2s}
+.hero .telemetry{animation-delay:.28s}
+@media(prefers-reduced-motion:reduce){.hero .hero-signal,.hero .hero-grid>div:first-child,.hero .portrait-block,.hero .telemetry{animation:none}}
