@@ -61,3 +61,7 @@
 .hero .portrait-block{animation-delay:.2s}
 .hero .telemetry{animation-delay:.28s}
 @media(prefers-reduced-motion:reduce){.hero .hero-signal,.hero .hero-grid>div:first-child,.hero .portrait-block,.hero .telemetry{animation:none}}
+.skip-link{position:fixed;top:14px;left:clamp(20px,5vw,76px);z-index:100;padding:12px 16px;background:var(--ink);color:var(--white);box-shadow:4px 4px 0 var(--signal);font:700 12px/1 monospace;text-transform:uppercase;letter-spacing:.06em;transform:translateY(calc(-100% - 24px));transition:transform .18s ease}
+.skip-link:focus{transform:translateY(0)}
+main:focus{outline:none}
+@media(prefers-reduced-motion:reduce){.skip-link{transition:none}}
